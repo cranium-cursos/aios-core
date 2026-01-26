@@ -132,8 +132,8 @@ function runDoctor() {
   const nodeVersion = process.version.replace('v', '');
   const requiredNodeVersion = '18.0.0';
   const compareVersions = (a, b) => {
-    const pa = a.split('.').map(n => parseInt(n, 10));
-    const pb = b.split('.').map(n => parseInt(n, 10));
+    const pa = a.split('.').map((n) => parseInt(n, 10));
+    const pb = b.split('.').map((n) => parseInt(n, 10));
     for (let i = 0; i < 3; i++) {
       const na = pa[i] || 0;
       const nb = pb[i] || 0;
@@ -144,7 +144,9 @@ function runDoctor() {
   };
   const nodeOk = compareVersions(nodeVersion, requiredNodeVersion) >= 0;
 
-  console.log(`${nodeOk ? '✔' : '✗'} Node.js version: ${process.version} ${nodeOk ? '(meets requirement: >=18.0.0)' : '(requires >=18.0.0)'}`);
+  console.log(
+    `${nodeOk ? '✔' : '✗'} Node.js version: ${process.version} ${nodeOk ? '(meets requirement: >=18.0.0)' : '(requires >=18.0.0)'}`
+  );
   if (!nodeOk) hasErrors = true;
 
   // Check npm
@@ -274,7 +276,7 @@ async function main() {
 }
 
 // Execute main function
-main().catch(error => {
+main().catch((error) => {
   console.error('❌ Fatal error:', error.message);
   process.exit(1);
 });
