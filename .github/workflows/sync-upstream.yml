@@ -1,0 +1,103 @@
+name: Sincronizar com Upstream
+
+on:
+  schedule:
+    # Executar a cada 6 horas para manter sempre atualizado
+    - cron: '0 */6 * * *'
+
+  # Permitir executar manualmente via GitHub Actions
+  workflow_dispatch:
+
+jobs:
+  sync-upstream:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar identidade git
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Adicionar upstream remote
+        run: |
+          git remote add upstream https://github.com/SynkraAI/aios-core.git || git remote set-url upstream https://github.com/SynkraAI/aios-core.git
+
+      - name: Fetch upstream main
+        run: git fetch upstream main
+
+      - name: Verificar se há diferenças
+        id: check
+        run: |
+          if git diff --quiet main upstream/main; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ Seu fork já está atualizado!"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📦 Encontradas novas atualizações do upstream"
+          fi
+
+      - name: Merge com upstream
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          git merge upstream/main --allow-unrelated-histories -m "Sincronizar com upstream/main - $(date +'%Y-%m-%d %H:%M:%S')" || true
+
+      - name: Resolver conflitos automáticos
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          # Manter a versão do upstream para arquivos de configuração
+          if [ -f bin/aios.js ]; then
+            git checkout --theirs bin/aios.js
+          fi
+
+          # Remover arquivos de cache
+          git rm -f .eslintcache 2>/dev/null || true
+
+          # Adicionar todas as resoluções
+          git add -A
+
+      - name: Completar merge
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          if git diff --cached --quiet; then
+            echo "Nenhuma mudança para fazer commit"
+          else
+            git commit --no-edit -m "🔄 Sincronizar com upstream/main
+
+- Fetch das atualizações do repositório SynkraAI/aios-core
+- Merge automático mantendo atualizações principais
+- Resolução de conflitos mantendo versão upstream
+- Data: $(date +'%Y-%m-%d %H:%M:%S')" || echo "Commit pode já existir"
+          fi
+
+      - name: Push para seu fork
+        if: steps.check.outputs.has_changes == 'true'
+        run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Criar issue se merge falhar
+        if: failure() && steps.check.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '⚠️ Falha ao sincronizar com upstream',
+              body: `Houve um problema ao sincronizar com o upstream no commit ${context.sha}.
+
+Acesse: https://github.com/${ context.repo.owner }/${ context.repo.repo }/actions/runs/${ context.runId }
+
+**Próximos passos:**
+1. Resolver conflitos manualmente se necessário
+2. Fazer push das mudanças
+3. Workflow será retentado em 6 horas`,
+              labels: ['sync', 'upstream']
+            })
