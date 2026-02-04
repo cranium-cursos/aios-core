@@ -90,3 +90,5 @@ jobs:
               body: 'Houve um problema ao sincronizar com o upstream. Consulte os logs do workflow para mais detalhes. URL: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}',
               labels: ['sync', 'upstream']
             })
+
+# Test update to trigger workflow
