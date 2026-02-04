@@ -93,7 +93,7 @@ jobs:
               title: '⚠️ Falha ao sincronizar com upstream',
               body: `Houve um problema ao sincronizar com o upstream no commit ${context.sha}.
 
-Acesse: https://github.com/${ context.repo.owner }/${ context.repo.repo }/actions/runs/${ context.runId }
+Acesse: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
 
 **Próximos passos:**
 1. Resolver conflitos manualmente se necessário
