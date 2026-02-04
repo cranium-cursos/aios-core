@@ -68,12 +68,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nenhuma mudança para fazer commit"
           else
-            git commit --no-edit -m "🔄 Sincronizar com upstream/main
-
-- Fetch das atualizações do repositório SynkraAI/aios-core
-- Merge automático mantendo atualizações principais
-- Resolução de conflitos mantendo versão upstream
-- Data: $(date +'%Y-%m-%d %H:%M:%S')" || echo "Commit pode já existir"
+            SYNC_DATE=$(date +'%Y-%m-%d %H:%M:%S')
+            git commit --no-edit -m "chore: sync with upstream/main at $SYNC_DATE" || echo "Commit pode já existir"
           fi
 
       - name: Push para seu fork
@@ -90,14 +86,7 @@ jobs:
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '⚠️ Falha ao sincronizar com upstream',
-              body: `Houve um problema ao sincronizar com o upstream no commit ${context.sha}.
-
-Acesse: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
-
-**Próximos passos:**
-1. Resolver conflitos manualmente se necessário
-2. Fazer push das mudanças
-3. Workflow será retentado em 6 horas`,
+              title: 'Falha ao sincronizar com upstream',
+              body: 'Houve um problema ao sincronizar com o upstream. Consulte os logs do workflow para mais detalhes. URL: https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}',
               labels: ['sync', 'upstream']
             })
