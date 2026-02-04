@@ -1,5 +1,9 @@
 # HCS Check Specifications
 
+> **EN** | [PT](../pt/architecture/hcs-check-specifications.md) | [ES](../es/architecture/hcs-check-specifications.md)
+
+---
+
 **Version:** 1.0
 **Status:** Proposed
 **Created:** 2025-12-30
@@ -886,7 +890,6 @@ async function runCheckWithTimeout(check, context) {
 - [ADR: HCS Architecture](./adr/adr-hcs-health-check-system.md)
 - [HCS Execution Modes](./hcs-execution-modes.md)
 - [HCS Self-Healing Specification](./hcs-self-healing-spec.md)
-- [Story HCS-2: Implementation](../stories/epics/epic-health-check-system/story-hcs-2-implementation.md)
 
 ---
 

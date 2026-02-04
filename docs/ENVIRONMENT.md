@@ -1,5 +1,9 @@
 # Environment Variables
 
+> 🌐 **EN** | [PT](./pt/ENVIRONMENT.md) | [ES](./es/ENVIRONMENT.md)
+
+---
+
 This document lists all environment variables used by Synkra AIOS and its components.
 
 ## Overview
@@ -46,11 +50,13 @@ Private Squads (in `aios-Squads` repository) may require additional environment 
 ### Creating `.env` File
 
 1. Copy the example file (if available):
+
    ```bash
    cp .env.example .env
    ```
 
 2. Or create a new `.env` file in the project root:
+
    ```bash
    touch .env
    ```
@@ -95,6 +101,7 @@ env:
 ### Other CI/CD Platforms
 
 Refer to your platform's documentation for secret management:
+
 - **GitLab CI:** Use GitLab CI/CD variables
 - **CircleCI:** Use CircleCI environment variables
 - **Jenkins:** Use Jenkins credentials
@@ -111,6 +118,7 @@ Refer to your platform's documentation for secret management:
 ### Missing Environment Variables
 
 If you see errors about missing environment variables:
+
 1. Check this document for required variables
 2. Check Squad documentation
 3. Verify `.env` file contains all necessary variables
@@ -119,6 +127,7 @@ If you see errors about missing environment variables:
 ## Contributing
 
 When adding new environment variables:
+
 1. Document them in this file
 2. Add them to `.env.example` (if creating one)
 3. Update relevant documentation
@@ -128,4 +137,3 @@ When adding new environment variables:
 
 **Last Updated:** 2025-11-12  
 **Story:** 4.8 - Repository Open-Source Migration
-

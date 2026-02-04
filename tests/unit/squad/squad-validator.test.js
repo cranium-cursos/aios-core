@@ -258,9 +258,7 @@ describe('SquadValidator', () => {
       const result = await validator.validateTasks(squadPath);
 
       const missingFieldWarnings = result.warnings.filter(
-        (w) =>
-          w.code === ValidationErrorCodes.TASK_MISSING_FIELD &&
-          w.file === 'valid-task.md',
+        (w) => w.code === ValidationErrorCodes.TASK_MISSING_FIELD && w.file === 'valid-task.md',
       );
       expect(missingFieldWarnings.length).toBe(0);
     });
@@ -291,9 +289,7 @@ describe('SquadValidator', () => {
 
       expect(result.valid).toBe(true);
       const formatWarnings = result.warnings.filter(
-        (w) =>
-          w.code === ValidationErrorCodes.AGENT_INVALID_FORMAT &&
-          w.file === 'test-agent.md',
+        (w) => w.code === ValidationErrorCodes.AGENT_INVALID_FORMAT && w.file === 'test-agent.md',
       );
       expect(formatWarnings.length).toBe(0);
     });
@@ -314,8 +310,7 @@ describe('SquadValidator', () => {
 
       const namingWarnings = result.warnings.filter(
         (w) =>
-          w.code === ValidationErrorCodes.INVALID_NAMING &&
-          w.file.toLowerCase().includes('agent'),
+          w.code === ValidationErrorCodes.INVALID_NAMING && w.file.toLowerCase().includes('agent'),
       );
       expect(namingWarnings.length).toBeGreaterThan(0);
     });
@@ -426,9 +421,9 @@ describe('SquadValidator', () => {
       await verboseValidator.validate(squadPath);
 
       expect(consoleLogSpy).toHaveBeenCalled();
-      expect(
-        consoleLogSpy.mock.calls.some((call) => call[0].includes('[SquadValidator]')),
-      ).toBe(true);
+      expect(consoleLogSpy.mock.calls.some((call) => call[0].includes('[SquadValidator]'))).toBe(
+        true,
+      );
     });
 
     it('should not log when verbose is disabled', async () => {
@@ -544,7 +539,10 @@ config:
       // Create project-level framework directory
       const frameworkDir = path.join(tempDir, 'docs', 'framework');
       await fs.mkdir(frameworkDir, { recursive: true });
-      await fs.writeFile(path.join(frameworkDir, 'CODING-STANDARDS.md'), '# Project Coding Standards');
+      await fs.writeFile(
+        path.join(frameworkDir, 'CODING-STANDARDS.md'),
+        '# Project Coding Standards',
+      );
       await fs.writeFile(path.join(frameworkDir, 'TECH-STACK.md'), '# Project Tech Stack');
 
       // Create squad.yaml with project-level config references
@@ -644,7 +642,10 @@ config:
       await fs.mkdir(frameworkDir, { recursive: true });
       await fs.writeFile(path.join(frameworkDir, 'CODING-STANDARDS.md'), '# Standards');
 
-      const result = await validator._resolveConfigPath(squadPath, '../../docs/framework/CODING-STANDARDS.md');
+      const result = await validator._resolveConfigPath(
+        squadPath,
+        '../../docs/framework/CODING-STANDARDS.md',
+      );
 
       expect(result).toBeDefined();
       expect(result).toContain('CODING-STANDARDS.md');
@@ -694,9 +695,7 @@ config:
       const result = await validator.validate(squadPath);
 
       // Should complete without config-related errors
-      const configErrors = result.errors.filter(e =>
-        e.message && e.message.includes('config')
-      );
+      const configErrors = result.errors.filter((e) => e.message && e.message.includes('config'));
       expect(configErrors).toHaveLength(0);
     });
   });

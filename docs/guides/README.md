@@ -1,5 +1,9 @@
 # AIOS Guides
 
+> **EN** | [PT](../pt/guides/README.md) | [ES](../es/guides/README.md)
+
+---
+
 Complete documentation index for AIOS system guides.
 
 ---
@@ -17,20 +21,20 @@ Use the DevOps agent: `@devops` then `*setup-mcp-docker`
 
 ### MCP Management Commands
 
-| Command | Description | Agent |
-|---------|-------------|-------|
+| Command             | Description                      | Agent   |
+| ------------------- | -------------------------------- | ------- |
 | `*setup-mcp-docker` | Initial Docker MCP Toolkit setup | @devops |
-| `*search-mcp` | Search available MCPs in catalog | @devops |
-| `*add-mcp` | Add MCP server to Docker gateway | @devops |
-| `*list-mcps` | List currently enabled MCPs | @devops |
-| `*remove-mcp` | Remove MCP from Docker gateway | @devops |
+| `*search-mcp`       | Search available MCPs in catalog | @devops |
+| `*add-mcp`          | Add MCP server to Docker gateway | @devops |
+| `*list-mcps`        | List currently enabled MCPs      | @devops |
+| `*remove-mcp`       | Remove MCP from Docker gateway   | @devops |
 
 ### Architecture Reference
 
-| Guide | Purpose | Time | Audience |
-|-------|---------|------|----------|
-| **[MCP Global Setup Guide](./mcp-global-setup.md)** | Global MCP server configuration | 10 min | All users |
-| **[MCP API Keys Management](../architecture/mcp-api-keys-management.md)** | Secure credential handling | 10 min | DevOps |
+| Guide                                                                     | Purpose                         | Time   | Audience  |
+| ------------------------------------------------------------------------- | ------------------------------- | ------ | --------- |
+| **[MCP Global Setup Guide](./mcp-global-setup.md)**                       | Global MCP server configuration | 10 min | All users |
+| **[MCP API Keys Management](../architecture/mcp-api-keys-management.md)** | Secure credential handling      | 10 min | DevOps    |
 
 > **Note:** 1MCP documentation has been deprecated. AIOS now uses Docker MCP Toolkit exclusively (Story 5.11). Archived docs available in `.github/deprecated-docs/guides/`.
 
@@ -44,26 +48,25 @@ Use the DevOps agent: `@devops` then `*setup-mcp-docker`
 
 ### Core Architecture
 
-| Guide | Purpose | Time | Audience |
-|-------|---------|------|----------|
+| Guide                                                              | Purpose                               | Time   | Audience               |
+| ------------------------------------------------------------------ | ------------------------------------- | ------ | ---------------------- |
 | **[Module System Architecture](../architecture/module-system.md)** | v2.1 modular architecture (4 modules) | 15 min | Architects, Developers |
-| **[Service Discovery Guide](./service-discovery.md)** | Worker discovery and registry API | 10 min | Developers |
-| **[Migration Guide v2.0→v2.1](../migration/v2.0-to-v2.1.md)** | Step-by-step migration instructions | 20 min | All users upgrading |
+| **[Service Discovery Guide](./service-discovery.md)**              | Worker discovery and registry API     | 10 min | Developers             |
+| **[Migration Guide v2.0→v2.1](../migration/v2.0-to-v2.1.md)**      | Step-by-step migration instructions   | 20 min | All users upgrading    |
 
 ### System Configuration
 
-| Guide | Purpose | Time | Audience |
-|-------|---------|------|----------|
-| **[Quality Gates Guide](./quality-gates.md)** | 3-layer quality gate system | 15 min | QA, DevOps |
+| Guide                                                 | Purpose                         | Time   | Audience       |
+| ----------------------------------------------------- | ------------------------------- | ------ | -------------- |
+| **[Quality Gates Guide](./quality-gates.md)**         | 3-layer quality gate system     | 15 min | QA, DevOps     |
 | **[Quality Dashboard Guide](./quality-dashboard.md)** | Dashboard metrics visualization | 10 min | Tech Leads, QA |
-| **[MCP Global Setup Guide](./mcp-global-setup.md)** | Global MCP server configuration | 10 min | All users |
+| **[MCP Global Setup Guide](./mcp-global-setup.md)**   | Global MCP server configuration | 10 min | All users      |
 
 ### Development Tools (Sprint 3)
 
-| Guide | Purpose | Time | Audience |
-|-------|---------|------|----------|
+| Guide                                             | Purpose                    | Time   | Audience   |
+| ------------------------------------------------- | -------------------------- | ------ | ---------- |
 | **[Template Engine v2](./template-engine-v2.md)** | Document generation engine | 10 min | Developers |
-| **[CodeRabbit Integration](./coderabbit/README.md)** | AI code review setup | 15 min | QA, DevOps |
 
 ### Quick Navigation (v2.1)
 
@@ -86,7 +89,6 @@ Use the DevOps agent: `@devops` then `*setup-mcp-docker`
 → [`template-engine-v2.md`](./template-engine-v2.md) (10 min)
 
 **...setup CodeRabbit integration**
-→ [`coderabbit/README.md`](./coderabbit/README.md) (15 min)
 
 **...setup global MCP servers**
 → [`mcp-global-setup.md`](./mcp-global-setup.md) (10 min)
@@ -105,12 +107,12 @@ Use the DevOps agent: `@devops` then `*setup-mcp-docker`
 
 ## Sprint 3 Documentation
 
-| Document | Lines | Status |
-|----------|-------|--------|
-| [Quality Gates Guide](./quality-gates.md) | ~600 | Complete |
-| [Quality Dashboard Guide](./quality-dashboard.md) | ~350 | Complete |
-| [Template Engine v2](./template-engine-v2.md) | ~400 | Complete |
-| [CodeRabbit Integration](./coderabbit/) | ~1000 | Complete |
+| Document                                          | Lines | Status   |
+| ------------------------------------------------- | ----- | -------- |
+| [Quality Gates Guide](./quality-gates.md)         | ~600  | Complete |
+| [Quality Dashboard Guide](./quality-dashboard.md) | ~350  | Complete |
+| [Template Engine v2](./template-engine-v2.md)     | ~400  | Complete |
+| [CodeRabbit Integration](./coderabbit/)           | ~1000 | Complete |
 
 ---
 

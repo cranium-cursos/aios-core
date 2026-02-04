@@ -1,5 +1,7 @@
 # Synkra AIOS FAQ
 
+> 🌐 **EN** | [PT](../pt/installation/faq.md) | [ES](../es/installation/faq.md)
+
 **Version:** 2.1.0
 **Last Updated:** 2025-01-24
 
@@ -609,7 +611,5 @@ projectStatus:
 
 ## Related Documentation
 
-- [Quick Start Guide](./v2.1-quick-start.md)
 - [Troubleshooting Guide](./troubleshooting.md)
-- [Migration Guide v2.0 to v2.1](./migration-v2.0-to-v2.1.md)
 - [Coding Standards](../framework/coding-standards.md)

@@ -9,15 +9,30 @@ Synkra AIOS is a meta-framework that orchestrates AI agents to handle complex de
 ## Agent System
 
 ### Agent Activation
-- Mention the agent persona in your prompt: "As the dev agent..." or "Acting as @dev..."
-- Available agents: dev, qa, architect, pm, po, sm, analyst
+- Agents are activated with @agent-name syntax: @dev, @qa, @architect, @pm, @po, @sm, @analyst
+- The master agent is activated with @aios-master
 - Agent commands use the * prefix: *help, *create-story, *task, *exit
 
 ### Agent Context
-When referencing an agent:
+When an agent is active:
 - Follow that agent's specific persona and expertise
 - Use the agent's designated workflow patterns
 - Maintain the agent's perspective throughout the interaction
+
+### Available Agents
+
+| Agent | Persona | Primary Role |
+|-------|---------|--------------|
+| @dev | Dex | Code implementation |
+| @qa | Quinn | Testing and quality |
+| @architect | Aria | System architecture |
+| @pm | Morgan | Product management |
+| @po | Pax | Product ownership |
+| @sm | River | Scrum master |
+| @analyst | Alex | Research and analysis |
+| @data-engineer | Dara | Database design |
+| @ux-design-expert | Uma | UX/UI design |
+| @devops | Gage | CI/CD and deployment |
 
 ## Development Methodology
 
@@ -45,41 +60,174 @@ When referencing an agent:
 
 ```
 aios-core/
-├── agents/         # Agent persona definitions (YAML/Markdown)
-├── tasks/          # Executable task workflows
-├── workflows/      # Multi-step workflow definitions
-├── templates/      # Document and code templates
-├── checklists/     # Validation and review checklists
-└── rules/          # Framework rules and patterns
-
-docs/
-├── stories/        # Development stories (numbered)
-├── prd/            # Product requirement documents
-├── architecture/   # System architecture documentation
-└── guides/         # User and developer guides
+├── .aios-core/
+│   ├── core/           # Framework core modules
+│   ├── development/
+│   │   ├── agents/     # Agent definitions
+│   │   ├── tasks/      # Executable tasks
+│   │   ├── workflows/  # Workflow definitions
+│   │   └── templates/  # Document templates
+│   └── infrastructure/ # Integrations and adapters
+├── docs/
+│   ├── stories/        # Development stories
+│   ├── prd/            # Product requirements
+│   └── architecture/   # Architecture docs
+└── src/                # Source code
 ```
 
-## Gemini CLI-Specific Configuration
+## Gemini CLI Specific Configuration
 
-### Rules Location
-- Rules are stored in `.gemini/rules.md`
-- Include agent context in your prompts
+### Skills Integration
+AIOS agents are installed as Gemini CLI skills in `.gemini/rules/AIOS/agents/`.
+Skills use the same format as Claude Code - they are fully compatible.
 
-### Usage Pattern
+To activate an agent skill:
+```
+@dev help me implement this feature
+@architect design the system architecture
+```
+
+### Hooks Configuration
+AIOS can integrate with Gemini CLI hooks for enhanced context injection.
+
+Configure in `.gemini/settings.json`:
+```json
+{
+  "hooks": {
+    "BeforeAgent": [{
+      "matcher": "*",
+      "hooks": [{
+        "name": "aios-context",
+        "type": "command",
+        "command": "node .aios-core/hooks/gemini/before-agent.js"
+      }]
+    }]
+  }
+}
+```
+
+### Gemini CLI Lifecycle Events
+Hooks can intercept these events:
+- `SessionStart` - Load AIOS context
+- `BeforeAgent` - Inject gotchas and patterns
+- `BeforeTool` - Security validation
+- `AfterTool` - Audit logging
+- `SessionEnd` - Persist state
+
+### Extensions
+AIOS can be packaged as a Gemini CLI extension for easy installation:
 ```bash
-# Example: Activate dev agent context
-gemini "As the AIOS dev agent, help me implement the user authentication feature from docs/stories/auth-story.md"
+gemini extensions install github.com/synkra/aios-gemini-extension
 ```
 
-### Performance Tips
-- Include relevant file context in prompts
-- Use clear, specific requests
-- Reference story files for context
+## Workflow Execution
 
-### Integration
-- Gemini CLI can execute shell commands
-- Use for code generation and analysis
-- Leverage multimodal capabilities for diagrams
+### Task Execution Pattern
+1. Read the complete task/workflow definition
+2. Understand all elicitation points
+3. Execute steps sequentially
+4. Handle errors gracefully
+5. Provide clear feedback
+
+### Interactive Workflows
+- Workflows with `elicit: true` require user input
+- Present options clearly
+- Validate user responses
+- Provide helpful defaults
+
+## Best Practices
+
+### When implementing features:
+- Check existing patterns first
+- Reuse components and utilities
+- Follow naming conventions
+- Keep functions focused and testable
+- Document complex logic
+
+### When working with agents:
+- Respect agent boundaries
+- Use appropriate agent for each task
+- Follow agent communication patterns
+- Maintain agent context
+
+### When handling errors:
+```javascript
+try {
+  // Operation
+} catch (error) {
+  console.error(`Error in ${operation}:`, error);
+  throw new Error(`Failed to ${operation}: ${error.message}`);
+}
+```
+
+## Git & GitHub Integration
+
+### Commit Conventions
+- Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, etc.
+- Reference story ID: `feat: implement feature [Story 2.1]`
+- Keep commits atomic and focused
+
+### Push Authority
+**Only @devops agent can push to remote.** Other agents should prepare changes and hand off to @devops.
+
+## Gemini CLI Commands
+
+### AIOS Agent Commands
+- `*help` - Show available commands
+- `*create-story` - Create new story
+- `*task {name}` - Execute specific task
+- `*workflow {name}` - Run workflow
+- `*exit` - Exit agent mode
+
+### Useful Gemini CLI Commands
+- `/settings` - Configure Gemini CLI
+- `/hooks panel` - View active hooks
+- `/extensions list` - List installed extensions
+- `/rewind` - Revert to previous state
+
+## Model Selection
+
+Gemini CLI supports multiple models:
+- **Gemini 3 Flash** - Fast, cost-effective for simple tasks
+- **Gemini 3 Pro** - High quality for complex reasoning
+
+Enable preview features in `/settings` to access latest models.
+
+## Development Commands
+
+```bash
+npm run dev       # Start development
+npm test          # Run tests
+npm run lint      # Check code style
+npm run typecheck # Verify types
+npm run build     # Build project
+```
+
+## Debugging
+
+### Enable Debug Mode
+```bash
+export AIOS_DEBUG=true
+```
+
+### View Agent Logs
+```bash
+tail -f .aios/logs/agent.log
+```
+
+## Performance Optimization
+
+- Use parallel tool execution when possible
+- Leverage Gemini's JSON output mode for structured responses
+- Cache frequently accessed data during sessions
+- Use `--output-format json` for programmatic integration
+
+## Error Recovery
+
+- Use `/rewind` to revert mistakes
+- Always provide recovery suggestions for failures
+- Include error context in messages
+- Document any manual fixes required
 
 ---
-*Synkra AIOS Gemini CLI Configuration v2.1*
+*Synkra AIOS Gemini CLI Configuration v1.0*

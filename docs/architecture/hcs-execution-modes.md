@@ -1,5 +1,9 @@
 # HCS Execution Modes Specification
 
+> **EN** | [PT](../pt/architecture/hcs-execution-modes.md) | [ES](../es/architecture/hcs-execution-modes.md)
+
+---
+
 **Version:** 1.0
 **Status:** Proposed
 **Created:** 2025-12-30
@@ -496,8 +500,6 @@ async function runAllChecks() {
 - [ADR: HCS Architecture](./adr/adr-hcs-health-check-system.md)
 - [HCS Self-Healing Specification](./hcs-self-healing-spec.md)
 - [HCS Check Specifications](./hcs-check-specifications.md)
-- [Story HCS-1: Investigation](../stories/epics/epic-health-check-system/story-hcs-1-investigation.md)
-- [Story HCS-2: Implementation](../stories/epics/epic-health-check-system/story-hcs-2-implementation.md)
 
 ---
 

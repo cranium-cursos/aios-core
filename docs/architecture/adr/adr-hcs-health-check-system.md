@@ -1,5 +1,9 @@
 # ADR: Health Check System Architecture
 
+> **EN** | [PT](../../pt/architecture/adr/adr-hcs-health-check-system.md) | [ES](../../es/architecture/adr/adr-hcs-health-check-system.md)
+
+---
+
 **ADR ID:** ADR-HCS-001
 **Status:** Proposed
 **Created:** 2025-12-30
@@ -359,10 +363,7 @@ tools/
 
 ### Internal References
 
-- [Story 3.11: Quality Gates Dashboard](../stories/v2.1/sprint-3/story-3.11-quality-gates-dashboard.md)
-- [Story HCS-1: Investigation](../stories/epics/epic-health-check-system/story-hcs-1-investigation.md)
-- [Story HCS-2: Implementation](../stories/epics/epic-health-check-system/story-hcs-2-implementation.md)
-- [Coding Standards](../framework/coding-standards.md)
+- [Coding Standards](../../framework/coding-standards.md)
 
 ---
 

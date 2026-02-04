@@ -1,5 +1,7 @@
 # AIOS Framework Documentation
 
+> 🌐 **EN** | [PT](../pt/framework/README.md) | [ES](../es/framework/README.md)
+
 **Status:** Official Framework Standards
 **Created:** 2025-01-16 (Story 6.1.2.6)
 **Migration Target:** Q2 2026 → `SynkraAI/aios-core` repository
@@ -81,12 +83,13 @@ For backward compatibility, framework docs remain accessible at **both** locatio
 
 ## 🔗 Related Documents
 
-- **Architecture Decisions**: [`docs/decisions/decision-005-repository-restructuring-FINAL.md`](../decisions/decision-005-repository-restructuring-FINAL.md)
-- **Migration Story**: [`docs/stories/aios migration/story-6.1.2.6-framework-config-system.md`](../stories/aios migration/story-6.1.2.6-framework-config-system.md)
-- **Project-Specific Docs**: [`docs/architecture/project-decisions/`](../architecture/project-decisions/)
+- **Architecture Overview**: [`docs/architecture/`](../architecture/)
+- **Installation Guide**: [`docs/installation/`](../installation/)
+- **Platform Guides**: [`docs/platforms/`](../platforms/)
+- **Architecture Decisions**: `docs/decisions/` *(coming soon)*
+- **Epic Planning**: `docs/epics/` *(coming soon)*
 
 ---
 
-**Last Updated**: 2025-12-14
+**Last Updated**: 2026-01-28
 **Maintainer**: AIOS Framework Team
-**Questions?** See [Epic 6.1 - Agent Identity System](../epics/epic-6.1-agent-identity-system.md)

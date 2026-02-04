@@ -1,5 +1,9 @@
 # ADR-COLLAB-2: Proposed Configuration - External Contribution Workflow
 
+> **EN** | [PT](../../pt/architecture/adr/ADR-COLLAB-2-proposed-configuration.md) | [ES](../../es/architecture/adr/ADR-COLLAB-2-proposed-configuration.md)
+
+---
+
 **Story:** COLLAB-1
 **Date:** 2025-12-30
 **Status:** Proposed
@@ -344,7 +348,7 @@ Fixes #
 
 ---
 
-_By submitting this PR, I confirm I have read the [Contribution Guidelines](../../CONTRIBUTING.md)_
+_By submitting this PR, I confirm I have read the [Contribution Guidelines](../../../CONTRIBUTING.md)_
 ```
 
 **File:** `.github/PULL_REQUEST_TEMPLATE/task_contribution.md`
@@ -389,7 +393,7 @@ Fixes #
 
 ---
 
-_By submitting this PR, I confirm I have read the [Contribution Guidelines](../../CONTRIBUTING.md)_
+_By submitting this PR, I confirm I have read the [Contribution Guidelines](../../../CONTRIBUTING.md)_
 ```
 
 ---
@@ -510,7 +514,6 @@ git push
 
 - [ADR-COLLAB-1-current-state-audit.md](./ADR-COLLAB-1-current-state-audit.md)
 - [contribution-workflow-research.md](../contribution-workflow-research.md)
-- [Story COLLAB-2: Implementation](../../stories/v2.1/sprint-15/story-collab-2-implementation.md) (follow-up)
 
 ---
 

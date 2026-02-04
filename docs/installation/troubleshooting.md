@@ -1,5 +1,7 @@
 # Synkra AIOS Troubleshooting Guide
 
+> 🌐 **EN** | [PT](../pt/installation/troubleshooting.md) | [ES](../es/installation/troubleshooting.md)
+
 **Version:** 2.1.0
 **Last Updated:** 2025-01-24
 
@@ -722,6 +724,4 @@ ls -la .aios-core/
 
 ## Related Documentation
 
-- [Quick Start Guide](./v2.1-quick-start.md)
 - [FAQ](./faq.md)
-- [Migration Guide](./migration-v2.0-to-v2.1.md)

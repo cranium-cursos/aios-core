@@ -1,5 +1,9 @@
 # HCS Self-Healing Specification
 
+> **EN** | [PT](../pt/architecture/hcs-self-healing-spec.md) | [ES](../es/architecture/hcs-self-healing-spec.md)
+
+---
+
 **Version:** 1.0
 **Status:** Proposed
 **Created:** 2025-12-30
@@ -680,7 +684,6 @@ await healingLog.append({
 - [ADR: HCS Architecture](./adr/adr-hcs-health-check-system.md)
 - [HCS Execution Modes](./hcs-execution-modes.md)
 - [HCS Check Specifications](./hcs-check-specifications.md)
-- [Story HCS-2: Implementation](../stories/epics/epic-health-check-system/story-hcs-2-implementation.md)
 
 ---
 

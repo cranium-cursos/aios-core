@@ -1,5 +1,7 @@
 # AIOS Coding Standards
 
+> 🌐 **EN** | [PT](../pt/framework/coding-standards.md) | [ES](../es/framework/coding-standards.md)
+
 **Version:** 1.1
 **Last Updated:** 2025-12-14
 **Status:** Official Framework Standard
@@ -26,6 +28,7 @@
 This document defines the official coding standards for AIOS framework development. All code contributions must adhere to these standards to ensure consistency, maintainability, and quality.
 
 **Enforcement:**
+
 - ESLint (automated)
 - Prettier (automated)
 - CodeRabbit review (automated)
@@ -46,7 +49,7 @@ const data = await fetchData();
 const { id, name } = data;
 
 // ❌ BAD: Outdated syntax
-fetchData().then(function(data) {
+fetchData().then(function (data) {
   var id = data.id;
   var name = data.name;
 });
@@ -88,14 +91,15 @@ function processAgent(agent) {
 
 // ❌ BAD: 4 spaces or tabs
 function processAgent(agent) {
-    if (agent.enabled) {
-        return loadAgent(agent);
-    }
-    return null;
+  if (agent.enabled) {
+    return loadAgent(agent);
+  }
+  return null;
 }
 ```
 
 **Prettier Configuration:**
+
 ```json
 {
   "printWidth": 100,
@@ -113,14 +117,14 @@ function processAgent(agent) {
 
 ```javascript
 // ✅ GOOD: Max 100 characters
-const result = await executeTask(
-  taskName,
-  taskArgs,
-  { timeout: 5000, retry: 3 }
-);
+const result = await executeTask(taskName, taskArgs, { timeout: 5000, retry: 3 });
 
 // ❌ BAD: Over 100 characters
-const result = await executeTask(taskName, taskArgs, { timeout: 5000, retry: 3, failureCallback: onFailure });
+const result = await executeTask(taskName, taskArgs, {
+  timeout: 5000,
+  retry: 3,
+  failureCallback: onFailure,
+});
 ```
 
 #### Quotes
@@ -131,7 +135,7 @@ const agentName = 'developer';
 const message = `Agent ${agentName} activated`;
 
 // ❌ BAD: Double quotes (except JSON)
-const agentName = "developer";
+const agentName = 'developer';
 ```
 
 ### Modern JavaScript Patterns
@@ -154,9 +158,8 @@ async function loadAgent(agentId) {
 // ❌ BAD: Promise chains
 function loadAgent(agentId) {
   return fetchAgent(agentId)
-    .then(agent => loadConfig(agent.configPath)
-      .then(config => ({ agent, config })))
-    .catch(error => {
+    .then((agent) => loadConfig(agent.configPath).then((config) => ({ agent, config })))
+    .catch((error) => {
       console.error(`Failed to load agent ${agentId}:`, error);
       throw error;
     });
@@ -184,7 +187,7 @@ const activeAgents = agents.filter((agent) => agent.enabled);
 const agentNames = agents.map((agent) => agent.name);
 
 // ❌ BAD: Traditional functions for simple callbacks
-const activeAgents = agents.filter(function(agent) {
+const activeAgents = agents.filter(function (agent) {
   return agent.enabled;
 });
 ```
@@ -257,15 +260,15 @@ docs/
 
 ```javascript
 // ✅ GOOD: Kebab-case for files
-agent-executor.js
-task-runner.js
-greeting-builder.js
-context-detector.js
+agent - executor.js;
+task - runner.js;
+greeting - builder.js;
+context - detector.js;
 
 // ❌ BAD: camelCase or PascalCase for files
-agentExecutor.js
-TaskRunner.js
-GreetingBuilder.js
+agentExecutor.js;
+TaskRunner.js;
+GreetingBuilder.js;
 ```
 
 ### Module Structure
@@ -390,7 +393,7 @@ class AgentManager {
 
   async getAgent(id) {
     // Public API
-    return this._loadFromCache(id) || await this._fetchAgent(id);
+    return this._loadFromCache(id) || (await this._fetchAgent(id));
   }
 }
 ```
@@ -474,6 +477,7 @@ function processAgent(agent) {
 ```
 
 **Refactor complex functions:**
+
 ```javascript
 // ✅ GOOD: Extracted helper functions
 function processAgent(agent) {
@@ -589,8 +593,8 @@ Every module/directory should have a README.md:
 const { executeAgent } = require('./agent-executor');
 
 const result = await executeAgent('dev', {
-  yoloMode: true,
-  storyPath: 'docs/stories/story-6.1.2.5.md'
+yoloMode: true,
+storyPath: 'docs/stories/story-6.1.2.5.md'
 });
 \`\`\`
 
@@ -644,10 +648,7 @@ describe('ContextDetector', () => {
 
     it('should return "workflow" when command pattern matches story_development', async () => {
       // Given
-      const conversationHistory = [
-        { command: 'validate-story-draft' },
-        { command: 'develop' }
-      ];
+      const conversationHistory = [{ command: 'validate-story-draft' }, { command: 'develop' }];
 
       // When
       const result = await detectSessionType(conversationHistory, null);
@@ -707,6 +708,7 @@ wip
 ```
 
 **Format:**
+
 ```
 <type>: <description> [Story <id>]
 
@@ -716,6 +718,7 @@ wip
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -853,6 +856,7 @@ jobs:
 ### CodeRabbit Integration
 
 All PRs automatically reviewed by CodeRabbit for:
+
 - Code quality issues
 - Security vulnerabilities
 - Performance problems
@@ -863,19 +867,18 @@ All PRs automatically reviewed by CodeRabbit for:
 
 ## Version History
 
-| Version | Date | Changes | Author |
-|---------|------|---------|--------|
-| 1.0 | 2025-01-15 | Initial coding standards document | Aria (architect) |
-| 1.1 | 2025-12-14 | Updated migration notice to SynkraAI/aios-core [Story 6.10] | Dex (dev) |
+| Version | Date       | Changes                                                     | Author           |
+| ------- | ---------- | ----------------------------------------------------------- | ---------------- |
+| 1.0     | 2025-01-15 | Initial coding standards document                           | Aria (architect) |
+| 1.1     | 2025-12-14 | Updated migration notice to SynkraAI/aios-core [Story 6.10] | Dex (dev)        |
 
 ---
 
 **Related Documents:**
+
 - [Tech Stack](./tech-stack.md)
 - [Source Tree](./source-tree.md)
-- [Decision 005: Repository Restructuring](../decisions/decision-005-repository-restructuring-FINAL.md)
-- [Story 6.1.2.5: Contextual Agent Load System](../stories/aios%20migration/story-6.1.2.5-contextual-agent-load-system.md)
 
 ---
 
-*This is an official AIOS framework standard. All code contributions must comply.*
+_This is an official AIOS framework standard. All code contributions must comply._
