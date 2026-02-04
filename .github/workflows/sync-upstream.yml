@@ -8,6 +8,13 @@ on:
   # Permitir executar manualmente via GitHub Actions
   workflow_dispatch:
 
+  # Disparar em push para testing
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/sync-upstream.yml'
+
 jobs:
   sync-upstream:
     runs-on: ubuntu-latest
